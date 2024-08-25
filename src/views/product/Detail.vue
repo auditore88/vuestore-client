@@ -24,6 +24,8 @@ import axios from 'axios'
 import NotFound from '../errors/404'
 
 export default {
+  name: 'ProductDetail', // Ubah dari 'Detail'
+  
   components: {
     NotFound
   },

@@ -21,6 +21,9 @@ import axios from 'axios'
 import ItemCart from '../../components/ItemCart'
 
 export default {
+  
+  name: 'CartIndex',
+
   components: {
     ItemCart
   },

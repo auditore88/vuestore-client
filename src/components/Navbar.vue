@@ -11,9 +11,10 @@
 
 <script>
 export default {
-
-}
+  name: 'AppNavbar', // Ubah nama komponen dari 'Navbar' ke 'AppNavbar'
+};
 </script>
+
 
 <style scoped>
   #nav-bar {

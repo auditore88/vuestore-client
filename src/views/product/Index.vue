@@ -19,6 +19,8 @@ import axios from 'axios'
 import ProductItem from '../../components/ProductItem'
 
 export default {
+  name: 'ProductIndex', // Ubah dari 'Index'
+  
   components: {
     ProductItem
   },
