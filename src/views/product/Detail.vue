@@ -1,9 +1,10 @@
 <template>
   <div>
-      <div id="page-wrap" v-if="product">
-        <h4 v-if="notif" class="notif">item added successfully</h4>
-        <div id="img-wrap">
-          <img :src="`http://localhost:8000${product.imageUrl}`" alt="">
+    <div id="page-wrap" v-if="product"> 
+        <!-- <h4 v-if="notif" class="notif">item added successfully</h4> -->
+        <div id="img-wrap"> -->
+          <img :src="product.imageUrl" alt="">
+          <!-- <img :src="`http://localhost:8000${product.imageUrl}`" alt=""> -->
         </div>
         <div id="product-details">
           <h1>{{ product.name }}</h1>
@@ -13,15 +14,14 @@
           <p>{{ product.description }}</p>
         </div>
       </div>
-
       <NotFound v-else/>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-// import { products } from '../../data-seed'
-import NotFound from '../errors/404'
+import { products } from '../../data-seed';
+import NotFound from '../errors/404';
+//import axios from 'axios';
 
 export default {
   name: 'ProductDetail', // Ubah dari 'Detail'
@@ -31,11 +31,27 @@ export default {
   },
   data() {
     return {
-      product: {},
-      notif: false
+      products
+      /* products: {},
+      notif: false */
+    }
+  },
+  computed: {
+    product() {
+      return this.products.find((p) => {
+        return p.id === this.$route.params.id
+    })
     }
   },
   methods: {
+    addToCart(product) {
+      const itemExists = this.cartItems.find(item => item.id === product.id);
+      if (!itemExists) {
+        this.cartItems.push(product);
+      }
+    }
+  }
+  /* methods: {
     async addToCart () {
       await axios.post('http://localhost:8000/api/orders/update/user/2', {
         product: this.$route.params.id
@@ -47,7 +63,8 @@ export default {
     const code = this.$route.params.id
     const result = await axios.get(`http://localhost:8000/api/products/${code}`)
     this.product = result.data
-  }
+  } */
+
 }
 </script>
 

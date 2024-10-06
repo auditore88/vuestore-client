@@ -3,19 +3,28 @@
       <div id="page-wrap">
           <div class="grid-wrap">
             <ProductItem 
+              v-for="product in products"
+              :key="product.id"
+
+              :product="product"
+            />
+          </div>
+            <!-- <ProductItem 
               v-for="(product, index) in products"
               :key="index"
 
               :product="product"
             />
-          </div>
+          </div> -->
       </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-// import { products } from '../../data-seed'
+import { products } from '../../data-seed';
+
+//import axios from 'axios';
+
 import ProductItem from '../../components/ProductItem'
 
 export default {
@@ -26,13 +35,19 @@ export default {
   },
   data() {
       return {
-          products: []
+        products
+          //products: []
       }
   },
-  async created() {
-    const result = await axios.get('http://localhost:8000/api/products')
-    this.products = result.data
-  }
+  /* async created() {
+  try {
+    const result = await axios.get('http://localhost:8000/api/products');
+    this.product = result.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  } 
+} */
+
 }
 </script>
 

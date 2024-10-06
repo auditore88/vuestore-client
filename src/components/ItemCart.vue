@@ -1,14 +1,19 @@
 <template>
     <div class="product-container">
-        <img :src="`http://localhost:8000${item.imageUrl}`" alt="" class="product-image">
+        
+      <img :src="item.imageUrl" alt="" class="product-image"><!-- <img :src="`http://localhost:8000${item.imageUrl}`" alt="" class="product-image"> -->
         <div class="details-wrap">
         <h3>{{ item.name }}</h3>
         <p>Rp{{ item.price }}</p>
         </div>
         <button 
           class="remove-button"
-          @click="$emit('remove-item', item.code)"
+          @click="$emit('remove-item', item.id)"
         >Remove</button>
+        <!-- <button 
+          class="remove-button"
+          @click="$emit('remove-item', item.code)"
+        >Remove</button> -->
     </div>
 </template>
 
