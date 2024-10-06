@@ -16,8 +16,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-// import { cartItems } from '../../data-seed'
+import { cartItems } from '../../data-seed';
+
+
+/* import axios from 'axios'; */
+
 import ItemCart from '../../components/ItemCart'
 
 export default {
@@ -29,18 +32,8 @@ export default {
   },
   data() {
     return {
-      cartItems: []
-    }
-  },
-  methods: {
-    async removeFromCart(product) {
-      await axios.delete(
-        `http://localhost:8000/api/orders/delete/user/2/product/${product}`
-      )
-      let cart = this.cartItems.map(function(item) { 
-        return item.code
-      }).indexOf(product)
-      this.cartItems.splice(cart, 1)
+      cartItems
+      //cartItems: []
     }
   },
   computed: {
@@ -51,7 +44,23 @@ export default {
       )
     }
   },
-  async created() {
+  methods: {
+    removeFromCart(productId) {
+      this.cartItems = this.cartItems.filter(item => item.id !== productId);
+    }
+  }
+  /* methods: {
+    async removeFromCart(product) {
+      await axios.delete(
+        `http://localhost:8000/api/orders/delete/user/2/product/${product}`
+      )
+      let cart = this.cartItems.map(function(item) { 
+        return item.code
+      }).indexOf(product)
+      this.cartItems.splice(cart, 1)
+    }
+  }, */
+  /* async created() {
     const result = await axios.get('http://localhost:8000/api/orders/user/2')
     let data = Object.assign({}, 
       ...(result.data.map(
@@ -62,7 +71,7 @@ export default {
       ))
     );
     this.cartItems = data.cart_items
-  }
+  } */
 
 }
 </script>
